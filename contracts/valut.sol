@@ -62,9 +62,5 @@ contract Valut {
     token.transfer(msg.sender, amount);
   } 
 
-
-
-
-
 }
 
