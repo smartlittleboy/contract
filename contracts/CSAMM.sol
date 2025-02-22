@@ -77,16 +77,17 @@ contract CSAMM {
         // } else {
         //     _update(reserve0 - amountOut, reserve1 + _amountIn);
         // }
-        (uint res0, uint res1) = isToken0
-            ? (resIn + _amountIn, resOut - amountOut)
-            : (resIn - amountOut, resOut + _amountIn);
 
-        /*
-         疑问 为啥不是 
+        // (uint res0, uint res1) = isToken0
+        //     ? (resIn + _amountIn, resOut - amountOut)
+        //     : (resIn - amountOut, resOut + _amountIn);
+
+        
+         //疑问 为啥不是 
           (uint res0, uint res1) = isToken0
             ? (resIn + _amountIn, resOut - amountOut)
             : (resOut - amountOut, resIn + _amountIn);
-        */
+        
         _update(res0, res1);
 
         // transfer token out
