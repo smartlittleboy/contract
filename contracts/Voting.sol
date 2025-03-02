@@ -129,7 +129,7 @@ contract Voting {
             address
         )
     {
-        Candidate storage candidate = candidates[_address];
+        Candidate memory candidate = candidates[_address];
         return (
             candidate.age,
             candidate.name,
@@ -235,5 +235,21 @@ contract Voting {
         return votersAddress;
      }
 
+     //计算哪个候选人获取投票最多
+     function getMostCandidates() external view returns (Candidate  memory){
+        
+        require(candidateAddress.length > 0, "canditates <= 0");
+        uint256 max = 0;
+        address maxAddress = candidateAddress[0];
+        Candidate memory maxCandidate = candidates[maxAddress];
+        for (uint256 i = 0; i < candidateAddress.length; i++) {
+             Candidate memory candidate = candidates[candidateAddress[i]];
+             if (candidate.voteCount > max) {
+                max = candidate.voteCount; 
+                maxCandidate = candidates[candidateAddress[i]];
+             }
+        }
+         return maxCandidate;
+     }
 
 }
